@@ -5,9 +5,11 @@ const venderRoutes=require('./routes/vendorRoutes');
 const bodyparser=require('body-parser');
 const firmRoutes=require('./routes/firmRoutes');
 const productRoutes=require('./routes/productRoutes');
+const cors=require('cors');
 const path=require('path')
 const app=express();
 dotENV.config();
+app.use(cors())
 mongoose.connect(process.env.MONGODB_URL)
 .then(()=>console.log("MongoDB connected successfully!!"))
 .catch((err)=>console.log("Error:",err))
