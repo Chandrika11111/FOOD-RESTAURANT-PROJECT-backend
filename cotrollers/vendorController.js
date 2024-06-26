@@ -30,8 +30,10 @@ const vendorLogin=async(req,res)=>{
              return res.status(400).json({message:"Invalid username or password"});
         }
         const token= jwt.sign({vendorId:vendor._id},SecretKey,{expiresIn:"1h"})
-        res.status(200).json({message:"Login successfull!!" ,token});
-        console.log(email ,token);
+        const vendorId=vendor._id;
+        const vendorName=vendor.username
+        res.status(200).json({message:"Login successfull!!" ,token ,vendorId,vendorName});
+        // console.log(email ,token);
     }catch(error){
         console.log(error)
         res.status(500).json({Error:"server error"})
@@ -53,7 +55,8 @@ const singleVendor=async(req,res)=>{
         if(!vendor){
             res.status(400).json({error:"vendor not found"});
         }
-        res.status(200).json({vendor});
+        const vendorFirmId=vendor.firm[0]._id
+        res.status(200).json({vendorId,vendorFirmId,vendor});
     } catch (error) {
         console.log(error);
         res.status(500).json({error:"server error"})

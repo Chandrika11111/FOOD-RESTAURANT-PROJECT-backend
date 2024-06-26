@@ -14,7 +14,7 @@ const upload = multer({ storage: storage });
 const addProduct=async(req,res)=>{
     try {
         const {productName,price,category,bestseller,description}=req.body;
-        const image=req.file?req.file.fileName:undefined;
+        const image=req.file?req.file.filename:undefined;
         const firmId=req.params.firmId;
         const firm=await Firm.findById(firmId);
         if(!firm){
@@ -54,6 +54,7 @@ const deleteProductById=async(req,res)=>{
         if(!deletedProduct){
             res.status(404).json({error:"record not found"})
         }
+        res.status(200).json({ message: "Product deleted successfully" });
         
     } catch (error) {
         console.log(error);

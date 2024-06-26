@@ -1,7 +1,6 @@
 const mongoose=require('mongoose');
-const Vendor = require('./Vendor');
-const Product = require('./Product');
-const firmSchema=mongoose.Schema({
+
+const firmSchema= new mongoose.Schema({
     firmName:{
         type:String,
         required:true,
