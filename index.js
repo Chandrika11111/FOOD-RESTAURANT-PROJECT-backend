@@ -13,13 +13,13 @@ app.use(cors())
 mongoose.connect(process.env.MONGODB_URL)
 .then(()=>console.log("MongoDB connected successfully!!"))
 .catch((err)=>console.log("Error:",err))
-const PORT=4000;
+const PORT= process.env.PORT||4000;
 app.use(bodyparser.json());
 app.use('/vendor',venderRoutes);
 app.use('/firm',firmRoutes);
 app.use('/product',productRoutes);
 app.use('/uploads', express.static('uploads'));
-app.get("/home",(req,res)=>{
+app.get("/",(req,res)=>{
     res.send("<h1> welcome to Taste Heaven")
 })
 app.listen(PORT,()=>{
